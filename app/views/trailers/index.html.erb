@@ -1,2 +1,8 @@
 <h1>Trailers#index</h1>
 <p>Find me in app/views/trailers/index.html.erb</p>
+<% @trailers.each do |trailer| %>
+    <div class="card">
+      <%= trailer.type %>
+      <%= trailer.description %>
+    </div>
+<% end %>

@@ -1,2 +1,11 @@
 <h1>Trailers#show</h1>
 <p>Find me in app/views/trailers/show.html.erb</p>
+
+<div class="card">
+  <%= trailer.type %>
+  <%= trailer.description %>
+  <%= trailer.coordinates %>
+  <%= trailer.onboard_capacity %>
+</div>
+
+<%= render "reservations/form", trailer: @trailer, reservation: @reservation %>
