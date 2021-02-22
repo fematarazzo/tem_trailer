@@ -1,0 +1,11 @@
+<% if @trailers.present? %>
+  <% @trailers.each do |trailer| %>
+    <div class="card">
+      <%= trailer.type %>
+      <%= trailer.description %>
+    </div>
+  <% end %>
+<% else %>
+  <h1>Você não tem um trailer cadastrado</h1>
+  <%= link_to "Cadastre seu trailer", new_trailer_path, class:"btn btn-primary" %>
+<% end %>

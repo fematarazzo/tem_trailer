@@ -4,11 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :description, :phone_number, :type, presence: true
+  validates :phone_number, :first_name, :last_name, presence: true
   validates :phone_number, uniqueness: true
 
   has_many :reservations, dependent: :destroy
-  has_many :trailers, through: :reservations
-  has_many :reviews, through: :reservations
-
+  has_many :trailers
 end
