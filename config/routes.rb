@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  get 'trailers/show_trailers'
   devise_for :users do
-    resources :reservations, except: [:new]
+    resources :reservations, only: [:index, :create]
   end
 
   resources :trailers do
-    resources :reservations, only: [:index]
+    resources :reservations, only: [:index, :create]
   end
 
+  resources :reservations, only: [:show]
+
+  resource :profiles, only: [:show]
+
+  resources :user_trailers, only: [:index, :show]
+
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

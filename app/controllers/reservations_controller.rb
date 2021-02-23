@@ -2,8 +2,15 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show edit update destroy]
 
   def index
+    @trailer = Trailer.find(params[:trailer_id])
     @reservations = Reservation.all
   end
+
+  # def new
+  #   @trailer = Trailer.find(params[:trailer_id])
+  #   @user = User.find(params[:user_id])
+  #   @reservation = Reservation.new
+  # end
 
   def show
   end
@@ -11,9 +18,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @trailer = Trailer.find(params[:trailer_id])
-    @user = User.find(params[:user_id])
     @reservation.trailer = @trailer
-    @reservation.user = @user
+    @reservation.user = current_user
     if @reservation.save
       redirect_to reservation_path(@reservation)
     else
@@ -21,21 +27,20 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def edit
+  # def edit
+  # end
 
-  end
+  # def update
+  #   @reservation.update(reservation_params)
+  #   redirect_to reservation_path(@reservation)
+  # end
 
-  def update
-    @reservation.update(reservation_params)
-    redirect_to reservation_path(@reservation)
-  end
-
-  def destroy
-    @reservation = reservation.find(params[:id])
-    @user = @reservation.user
-    @reservation.destroy
-    redirect_to user_path(@reservation.user)
-  end
+  # def destroy
+  #   @reservation = reservation.find(params[:id])
+  #   @user = @reservation.user
+  #   @reservation.destroy
+  #   redirect_to user_path(@reservation.user)
+  # end
 
   private
 
@@ -44,6 +49,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :price, :total, :rating, :description)
+    params.require(:reservation).permit(:start_date, :end_date)
   end
 end

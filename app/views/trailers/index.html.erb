@@ -1,24 +1,33 @@
 <h1>Trailers#index</h1>
 <p>Find me in app/views/trailers/index.html.erb</p>
+
+<%  # Uma div grandona que vai conter todos os cards dos trailers%>
 <div class="d-flex justify-content-evenly flex-wrap">
+  <% # Iteracao sobre cada um dos trailers %>
   <% @trailers.each do |trailer| %>
+    <% #Crio um card com a largura definida abaixo %>
     <div class="card m-2 card-main" style="width: 22rem;">
+      <% #card vai ter a image do trailer %>
       <div class="card-image">
         <%  #  = cl_image_tag trailer.photo.key, class:"card-img-top" ***PARA QUANDO TIVERMOS IMAGENS!*** %>
       </div>
+      <% #corpo com texto do card %>
       <div class="card-body">
+        <% #Link clicavel com o modelo do trailer %>
         <%= link_to trailer_path(trailer), class:"card-link card-title" do %>
           <h5 class="card-title"> <%= trailer.model %></h5>
         <% end %>
+        <% #descricao pequena do trailer %>
         <p class="card-text"> <%= trailer.description %></p>
         <hr>
+        <% #botoes dos cards %>
         <div class="d-flex text-right">
           <%= link_to "More info", trailer_path(trailer), class:"card-link" %>
-          <% if trailer.user == current_user || current_user.admin? %>
+          <% # if trailer.user == current_user || current_user.admin? %>
             <%= link_to "Edit", edit_trailer_path(trailer), class:"card-link card-edit" %>
             <%= link_to "Delete", trailer_path(trailer), method: :delete,
             data: { confirm: "Are you sure?" }, class:"card-link card-delete" %>
-          <% end %>
+          <% # end %>
         </div>
       </div>
     </div>

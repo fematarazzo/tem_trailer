@@ -2,10 +2,27 @@
 <p>Find me in app/views/trailers/show.html.erb</p>
 
 <div class="card">
-  <%= trailer.type %>
-  <%= trailer.description %>
-  <%= trailer.coordinates %>
-  <%= trailer.onboard_capacity %>
+  <%= image_tag "http://thenewswheel.com/wp-content/uploads/2014/08/Winnebago_ClassA1.jpg", alt: "ford motor home", class:'card-trailer' %>
+  <div class="d-flex justify-content-between p-5">
+    <div>
+      <h1> <%= @trailer.model %> </h1>
+      <h4> Description:</h4>
+      <h4> <%= @trailer.description %> </h4>
+      <hr>
+      <p> Coordinates:</p>
+      <p> <%= @trailer.description %> </p>
+      <p> Onboard Capacity:</p>
+      <p> <%= "#{@trailer.onboard_capacity}" %> </p>
+    </div>
+    <div>
+      <h1>Faca sua reserva:</h1>
+      <%= simple_form_for [ @trailer, @reservation ] do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.button :submit, class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%= render "reservations/form", trailer: @trailer, reservation: @reservation %>
+

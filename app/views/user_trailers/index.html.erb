@@ -1,0 +1,18 @@
+<% if @trailers.present? %>
+  <% @trailers.each do |trailer| %>
+      <div class="card">
+        <div class="d-flex justify-content-between p-5">
+        <div>
+          <h1><%= trailer.model %></h1>
+          <p>  <%= trailer.description %> </p>
+        </div>
+        <div>
+          <%= link_to "Gerencie as reservas do trailer", user_trailer_path(trailer), class:"btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <h1>Você não tem um trailer cadastrado</h1>
+  <%= link_to "Cadastre seu trailer", new_trailer_path, class:"btn btn-primary" %>
+<% end %>

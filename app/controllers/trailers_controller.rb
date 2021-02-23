@@ -1,12 +1,12 @@
 class TrailersController < ApplicationController
   before_action :set_trailer, only: %i[show edit update destroy]
-  before_action :validate_current_user, only: [:edit, :update, :destroy]
+  # before_action :validate_current_user, only: %i[edit update destroy]
   def index
     @trailers = Trailer.all
   end
 
   def show
-    @dose = Dose.new
+    @reservation = Reservation.new
   end
 
   def new
@@ -15,6 +15,7 @@ class TrailersController < ApplicationController
 
   def create
     @trailer = Trailer.new(trailer_params)
+    @trailer.user = current_user
     if @trailer.save
       redirect_to trailer_path(@trailer)
     else
@@ -35,10 +36,6 @@ class TrailersController < ApplicationController
     redirect_to trailers_path
   end
 
-  def show_trailers
-    @trailers = Trailer.where(user_id: current_user)
-  end
-
   private
 
   def set_trailer
@@ -49,10 +46,10 @@ class TrailersController < ApplicationController
     params.require(:trailer).permit(:model, :price, :description, :coordinates, :onboard_capacity)
   end
 
-  def validate_current_user
-    if !current_user.admin? && @trailer.user != current_user
-      redirect_to root_path, alert: 'Invalid action'
-      return
-    end
-  end
+  # def validate_current_user
+  #   if !current_user.admin? && @trailer.user != current_user
+  #     redirect_to root_path, alert: 'Invalid action'
+  #     return
+  #   end
+  # end
 end

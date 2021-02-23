@@ -9,4 +9,5 @@ class User < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
   has_many :trailers
+  has_many :trailers, through: :reservations
 end

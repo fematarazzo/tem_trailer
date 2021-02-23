@@ -1,0 +1,100 @@
+# 1) MODEL USER
+Criou um User devise model - Somente email e password (e suas validacoes)
+rails g devise User
+
+# 2) ADICIONAMOS COLUNAS NO USER
+Colunas adicionadas - Type, Phone Number, Description, Profile Image, First Name, Last Name
+
+# 3) VALIDAMOS A PRESENCA DOS CAMPOS DO USER
+validates :phone_number, :first_name, :last_name, presence: true
+validates :phone_number, uniqueness: true
+
+# 4) POR DEFAULT DO DEVISE, O USER JA TINHA CONTROLLER EMBUTIDO. (New, Create, Edit, Update, Delete)
+Criamos um metodo de show
+Criamos um caminho na routes "get 'users/show'"
+
+# 5) ALTERAMOS O FORM DO 'views/devise/registrations/edit' e 'views/devise/registrations/new' E ADICIONAMOS FIRST_NAME, LAST_NAME E PHONE-NUMBER
+
+# 6) ADICIONAMOS O STRONG PARAMS DO FIRST_NAME, LAST_NAME e PHONE NUMBER NO 'application_controller'
+
+# 7) TRAILER MODEL
+rails g model Trailer price:integer model description:text coordinates onboard_capacity:integer user:references
+
+# 8) VALIDAMOS A PRESENCA DOS CAMPOS DO TRAILER
+validates :price, :model, :onboard_capacity, :description, :coordinates, presence: true
+
+# 9) ASSOCIACOES DE TRAILER PARA USER - No modelo de trailer
+
+belongs_to :user ***locador***
+
+# 10) ASSOCIACOES DE USER PARA TRAILER - No modelo de user
+has_many :trailers ***locador***
+
+# 11) CRIAMOS AS ROTAS DO TRAILER
+Utilizando resources :trailers
+
+# 12) CRIAMOS O CONTROLLER DO TRAILER
+rails g controller Trailers index show new create edit update destroy
+
+# 13) ADICIONAMOS AS RESPECTIVAS FUNCIONALIDADES PARA OS METODOS
+
+# 14) CRIAMOS UM METODO CHAMADO SHOW_TRAILERS QUE LISTA TODOS OS TRAILERS QUE AQUELE USUARIO TEM
+  def show_trailers
+    @trailers = Trailer.where(user_id: current_user)
+  end
+
+# 15) CRIAMOS UM CAMINHO PARA MOSTRAR ESSE METODO DE SHOW_TRAILERS
+get 'trailers/show_trailers'
+
+# 16) EDITAMOS AS RESPECTIVAS VIEWS DO TRAILER:
+Index- Criei uma div com cards, os cards em si com o modelo e descricao. Tb criei os botoes com autorizacao
+Show- Card com as informacoes detalhadas do trailer em si (@trailer)
+New- Renderizando o formulario do form
+Edit- Renderizando o formulario do form
+***Criamos uma view para o metodo show_trailers*** Show_trailers- Se tiver trailer cadastrados: liste os trailers. Se nao tiver, mostre o botao para adicionar
+
+
+# 17) CRIAR O MODELO DO RESERVATION
+rails g model Reservation price:integer total:integer description:text rating:integer start_date:date end_date:date user:references trailer:references
+
+# 18) VALIDAMOS AS CAMPOS NECESSARIOS DE RESERVATION
+validates :start_date, :end_date, presence: true
+
+# 19) ASSOCIACOES DE RESERVATIONS COM OS DEMAIS
+belongs_to :user
+belongs_to :trailer
+
+# 20) ASSOCIACOES DE USER COM RESERVATIONS
+has_many :reservations, dependent: :destroy
+*** Adicionamos que agora os usuarios podem ter trailers atraves das reservas (locatario) **
+has_many :trailers, through: :reservations ***locatario***
+
+# 21) ASSOCIACOES DE TRAILER COM RESERVATIONS
+has_many :reservations, dependent: :destroy
+*** Adicionamos que agora os trailers podem ter usuarios atraves das reservas (locatario)***
+has_many :users, through: :reservations ***locatario***
+
+
+# 22) CRIAMOS ROTAS PARA AS RESERVATIONS
+reservas que so podem ser acessadas atraves do usuario
+  devise_for :users do
+    resources :reservations, only: [:index, :create]
+  end
+PRECISAMOS DEFINIR CAMINHO DEPOIS QUE CLICA PARA RESERVAR
+
+reservas que so podem ser criadas/acessadas atraves do trailer
+  resources :trailers do
+    resources :reservations, only: [:index]
+  end
+
+# 23) CRIAMOS CONTROLLER PARA RESERVATIONS
+
+# 24) CRIAMOS AS VIEWS DO RESERVATIONS
+
+# 25) CRIOU O PAGE HOME - COM BANNER, CARD E CAMPO DE PESQUISA DE TRAILER
+
+====================================================
+
+1) Como colocar a Home com o formulario de pesquisa? Qual caminho?
+trailer - coordinates
+************AULA DE QUINTA VEREMOS O SEARCH*******************
