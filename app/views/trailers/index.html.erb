@@ -4,7 +4,7 @@
   <% @trailers.each do |trailer| %>
     <div class="card m-2 card-main" style="width: 22rem;">
       <div class="card-image">
-        <%= cl_image_tag trailer.photo.key, class:"card-img-top" %>
+        <%  #  = cl_image_tag trailer.photo.key, class:"card-img-top" ***PARA QUANDO TIVERMOS IMAGENS!*** %>
       </div>
       <div class="card-body">
         <%= link_to trailer_path(trailer), class:"card-link card-title" do %>
@@ -14,7 +14,7 @@
         <hr>
         <div class="d-flex text-right">
           <%= link_to "More info", trailer_path(trailer), class:"card-link" %>
-          <% if !current_user.admin? && trailer.user != current_user%>
+          <% if trailer.user == current_user || current_user.admin? %>
             <%= link_to "Edit", edit_trailer_path(trailer), class:"card-link card-edit" %>
             <%= link_to "Delete", trailer_path(trailer), method: :delete,
             data: { confirm: "Are you sure?" }, class:"card-link card-delete" %>
