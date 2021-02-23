@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_203532) do
 
   create_table "trailers", force: :cascade do |t|
     t.integer "price"
-    t.string "type"
+    t.string "model"
     t.text "description"
     t.string "coordinates"
     t.integer "onboard_capacity"

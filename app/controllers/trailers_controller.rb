@@ -46,7 +46,7 @@ class TrailersController < ApplicationController
   end
 
   def trailer_params
-    params.require(:trailer).permit(:type, :price, :description, :coordinates, :onboard_capacity)
+    params.require(:trailer).permit(:model, :price, :description, :coordinates, :onboard_capacity)
   end
 
   def validate_current_user
