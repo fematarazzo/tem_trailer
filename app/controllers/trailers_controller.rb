@@ -1,6 +1,6 @@
 class TrailersController < ApplicationController
   before_action :set_trailer, only: %i[show edit update destroy]
-
+  before_action :validate_current_user, only: [:edit, :update, :destroy]
   def index
     @trailers = Trailer.all
   end
@@ -47,5 +47,12 @@ class TrailersController < ApplicationController
 
   def trailer_params
     params.require(:trailer).permit(:type, :price, :description, :coordinates, :onboard_capacity)
+  end
+
+  def validate_current_user
+    if !current_user.admin? && @trailer.user != current_user
+      redirect_to root_path, alert: 'Invalid action'
+      return
+    end
   end
 end
