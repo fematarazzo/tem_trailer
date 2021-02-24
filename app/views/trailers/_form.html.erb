@@ -1,9 +1,13 @@
-<%= simple_form_for trailer do |f| %>
-  <%= f.input :model %>
-  <%= f.input :onboard_capacity %>
-  <%= f.input :description %>
-  <%= f.input :address %>
-  <%= f.input :price %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit, class:"btn btn-primary" %>
-<% end %>
+<div class="container mt-4">
+
+  <%= simple_form_for trailer do |f| %>
+    <%= f.input :model %>
+    <%= f.input :onboard_capacity %>
+    <%= f.input :description %>
+    <%= f.input :address %>
+    <%= f.input :price %>
+    <%= f.input :photo, as: :file %>
+    <%= f.button :submit, class:"btn btn-primary" %>
+  <% end %>
+
+</div>
