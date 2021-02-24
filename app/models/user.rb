@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :phone_number, :first_name, :last_name, presence: true
-  validates :phone_number, uniqueness: true
+  #validates :phone_number
 
+  has_one_attached :photo
   has_many :reservations, dependent: :destroy
   has_many :trailers
   has_many :trailers, through: :reservations

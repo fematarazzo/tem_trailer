@@ -3,6 +3,13 @@ class TrailersController < ApplicationController
   # before_action :validate_current_user, only: %i[edit update destroy]
   def index
     @trailers = Trailer.all
+    @markers = @trailers.geocoded.map do |flat|
+    {
+      lat: flat.latitude,
+      lng: flat.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { trailer: @trailers })
+    }
+    end
   end
 
   def show
@@ -43,7 +50,7 @@ class TrailersController < ApplicationController
   end
 
   def trailer_params
-    params.require(:trailer).permit(:model, :price, :description, :coordinates, :onboard_capacity)
+    params.require(:trailer).permit(:model, :price, :description, :address, :onboard_capacity, :photo)
   end
 
   # def validate_current_user

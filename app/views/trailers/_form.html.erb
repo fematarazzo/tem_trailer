@@ -2,7 +2,8 @@
   <%= f.input :model %>
   <%= f.input :onboard_capacity %>
   <%= f.input :description %>
-  <%= f.input :coordinates %>
+  <%= f.input :address %>
   <%= f.input :price %>
+  <%= f.input :photo, as: :file %>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>
