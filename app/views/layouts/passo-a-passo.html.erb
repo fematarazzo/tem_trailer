@@ -3,15 +3,19 @@ Criou um User devise model - Somente email e password (e suas validacoes)
 rails g devise User
 
 # 2) ADICIONAMOS COLUNAS NO USER
-Colunas adicionadas - Type, Phone Number, Description, Profile Image, First Name, Last Name
+Colunas adicionadas - Phone Number, Description, Profile Image, First Name, Last Name
+rails g migration AddColumnToUser
+
+def change
+  add_column :users, :phone_number, :string
+  (...)
+end
 
 # 3) VALIDAMOS A PRESENCA DOS CAMPOS DO USER
 validates :phone_number, :first_name, :last_name, presence: true
-validates :phone_number, uniqueness: true
 
 # 4) POR DEFAULT DO DEVISE, O USER JA TINHA CONTROLLER EMBUTIDO. (New, Create, Edit, Update, Delete)
-Criamos um metodo de show
-Criamos um caminho na routes "get 'users/show'"
+Criamos um controller para que o usuario acesse o show (my profile) - Controller Profile
 
 # 5) ALTERAMOS O FORM DO 'views/devise/registrations/edit' e 'views/devise/registrations/new' E ADICIONAMOS FIRST_NAME, LAST_NAME E PHONE-NUMBER
 
@@ -21,7 +25,7 @@ Criamos um caminho na routes "get 'users/show'"
 rails g model Trailer price:integer model description:text coordinates onboard_capacity:integer user:references
 
 # 8) VALIDAMOS A PRESENCA DOS CAMPOS DO TRAILER
-validates :price, :model, :onboard_capacity, :description, :coordinates, presence: true
+validates :price, :model, :onboard_capacity, :description, :address, presence: true
 
 # 9) ASSOCIACOES DE TRAILER PARA USER - No modelo de trailer
 
@@ -39,12 +43,13 @@ rails g controller Trailers index show new create edit update destroy
 # 13) ADICIONAMOS AS RESPECTIVAS FUNCIONALIDADES PARA OS METODOS
 
 # 14) CRIAMOS UM METODO CHAMADO SHOW_TRAILERS QUE LISTA TODOS OS TRAILERS QUE AQUELE USUARIO TEM
+  Criamos um controller chamado USER TRAILERS
+
   def show_trailers
     @trailers = Trailer.where(user_id: current_user)
   end
 
 # 15) CRIAMOS UM CAMINHO PARA MOSTRAR ESSE METODO DE SHOW_TRAILERS
-get 'trailers/show_trailers'
 
 # 16) EDITAMOS AS RESPECTIVAS VIEWS DO TRAILER:
 Index- Criei uma div com cards, os cards em si com o modelo e descricao. Tb criei os botoes com autorizacao
@@ -80,7 +85,6 @@ reservas que so podem ser acessadas atraves do usuario
   devise_for :users do
     resources :reservations, only: [:index, :create]
   end
-PRECISAMOS DEFINIR CAMINHO DEPOIS QUE CLICA PARA RESERVAR
 
 reservas que so podem ser criadas/acessadas atraves do trailer
   resources :trailers do
