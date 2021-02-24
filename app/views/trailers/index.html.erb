@@ -10,10 +10,10 @@
       <div class="row">
         <% @trailers.each do |trailer| %>
           <% #Crio um card com a largura definida abaixo %>
-          <div class="card m-2 card-main card-border col-5" style="width: 100%; height: 300px;">
+          <div class="card m-2 card-main card-border col-5" style="width: 100%">
             <% #card vai ter a image do trailer %>
             <div class="card-image">
-              <%= cl_image_tag trailer.photo.key, class:"card-img-top"%>
+              <%= cl_image_tag trailer.photo.key, class:"card-img-top mt-2"%>
             </div>
             <% #corpo com texto do card %>
             <div class="card-body">
