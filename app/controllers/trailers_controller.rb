@@ -2,7 +2,7 @@ class TrailersController < ApplicationController
   before_action :set_trailer, only: %i[show edit update destroy]
   # before_action :validate_current_user, only: %i[edit update destroy]
   def index
-    @trailers = Trailer.all
+    @trailers = Trailer.order(created_at: :desc)
     @markers = @trailers.geocoded.map do |flat|
     {
       lat: flat.latitude,

@@ -6,26 +6,29 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Trailer.destroy_all
+User.destroy_all
 
-25.times do
-  user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    password: "teste123",
-    phone_number: "1234567",
-    )
-  user.save
+user = User.new(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: "teste@teste.com",
+  password: "teste123",
+  phone_number: "1234567",
+  )
+user.save!
+
+10.times do
   trailer = Trailer.new(
     user_id: user.id,
-    model:  " #{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
-    description: Faker::Lorem.words(number: 4),
+    model: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
+    description: "Lorem ipsum dolor sit amet",
     price: rand(50000..400000),
     onboard_capacity: rand(2..8),
     address: Faker::Address.street_address
     )
-  #trailer.user_id = user.id
-  trailer.save
+
+  trailer.save!
 
   puts "Trailer do #{user.first_name} foi criado"
 
