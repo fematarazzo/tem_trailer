@@ -2,13 +2,26 @@ class TrailersController < ApplicationController
   before_action :set_trailer, only: %i[show edit update destroy]
   # before_action :validate_current_user, only: %i[edit update destroy]
   def index
-    @trailers = Trailer.order(created_at: :desc)
-    @markers = @trailers.geocoded.map do |flat|
-    {
-      lat: flat.latitude,
-      lng: flat.longitude,
-      infoWindow: render_to_string(partial: "info_window", locals: { trailer: @trailers })
-    }
+    
+    if params[:query].present?
+      @trailers = Trailer.search_by_address(params[:query])
+      @trailers = @trailers.where(onboard_capacity: params[:capacity])
+      @markers = @trailers.geocoded.map do |flat|
+        {
+          lat: flat.latitude,
+          lng: flat.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { trailer: @trailers })
+        }
+      end
+    else
+      @trailers = Trailer.order(created_at: :desc)
+      @markers = @trailers.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { trailer: @trailers })
+      }
+      end
     end
   end
 

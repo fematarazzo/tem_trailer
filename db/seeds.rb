@@ -25,7 +25,7 @@ user.save!
     description: "Lorem ipsum dolor sit amet",
     price: rand(50000..400000),
     onboard_capacity: rand(2..8),
-    address: Faker::Address.street_address
+    address: Faker::Address.state
     )
 
   trailer.save!

@@ -8,6 +8,20 @@
     </div>
     <div class="card-form p-4 card-border">
       <h1>Search - será aqui</h1>
+
+      <%= form_tag trailers_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find your trailer"
+        %>
+        <%= select_tag :capacity, options_for_select((1..8)),
+          class: "form-control",
+          placeholder: "Numero de pessoas"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+
     </div>
   </div>
 
