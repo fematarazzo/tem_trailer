@@ -24,7 +24,7 @@ user.save!
     model: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
     description: "Lorem ipsum dolor sit amet",
     price: rand(50000..400000),
-    onboard_capacity: rand(2..8),
+    onboard_capacity: rand(1..8),
     address: Faker::Address.state
     )
 
@@ -32,4 +32,14 @@ user.save!
 
   puts "Trailer do #{user.first_name} foi criado"
 
+  reservation = Reservation.new(
+    user_id: user.id,
+    trailer_id: trailer.id,
+    start_date: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
+    end_date: "Lorem ipsum dolor sit amet",
+    
+    )
+
+
+  
 end
