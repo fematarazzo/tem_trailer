@@ -1,10 +1,4 @@
 class Trailer < ApplicationRecord
-  include PgSearch::Model
-  pg_search_scope :search_by_address,
-    against: [ :address ],
-    using: {
-      tsearch: { prefix: true } 
-    }
   validates :price, :model, :onboard_capacity, :description, :address, presence: true
 
   has_one_attached :photo

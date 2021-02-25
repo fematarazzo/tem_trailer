@@ -1,4 +1,5 @@
 require 'faker'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -10,6 +11,8 @@ Trailer.destroy_all
 User.destroy_all
 Reservation.destroy_all
 
+
+
 user = User.new(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
@@ -20,6 +23,7 @@ user = User.new(
 user.save!
 
 10.times do
+  date = DateTime.new(2021,rand(1..12),rand(1..28))
   trailer = Trailer.new(
     user_id: user.id,
     model: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
@@ -31,16 +35,16 @@ user.save!
 
   trailer.save!
 
-  puts "Trailer do #{user.first_name} foi criado"
-  date = Date.new(rand(2021..2023), rand(1..12), rand(1..28))
-  reservation = Reservation.create!(
-    user_id: user.id,
-    trailer_id: trailer.id,
-    start_date: date,
-    end_date: date + rand(5..10)
-
-    )
 
 
+  5.times do
+    reservation = Reservation.create(
+      user_id: user.id,
+      trailer_id: trailer.id,
+      start_date: date,
+      end_date: date + 10
+      )
+    date = date + 30
+  end
 
 end
