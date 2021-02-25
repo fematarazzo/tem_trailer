@@ -19,6 +19,8 @@
           class: "form-control",
           placeholder: "Numero de pessoas"
         %>
+        <%= date_select("reservation", "start_date") %>
+
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
 

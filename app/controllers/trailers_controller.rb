@@ -2,10 +2,14 @@ class TrailersController < ApplicationController
   before_action :set_trailer, only: %i[show edit update destroy]
   # before_action :validate_current_user, only: %i[edit update destroy]
   def index
-    
     if params[:query].present?
+      start_date = Date.new(params[:"reservation"][:"start_date(1i)"].to_i, params[:"reservation"][:"start_date(2i)"].to_i, params[:"reservation"][:"start_date(3i)"].to_i)
+      end_date = Date.new(params[:"reservation"][:"end_date(1i)"].to_i, params[:"reservation"][:"end_date(2i)"].to_i, params[:"reservation"][:"end_date(3i)"].to_i)
       @trailers = Trailer.search_by_address(params[:query])
       @trailers = @trailers.where(onboard_capacity: params[:capacity])
+      @trailers.select do |trailer|
+        Reservation.where(trailer: trailer).where("start_date > ? OR end_date <  ?", end_date, start_date).empty?
+      end
       @markers = @trailers.geocoded.map do |flat|
         {
           lat: flat.latitude,
@@ -63,7 +67,7 @@ class TrailersController < ApplicationController
   end
 
   def trailer_params
-    params.require(:trailer).permit(:model, :price, :description, :address, :onboard_capacity, :photo)
+    params.require(:trailer).permit(:model, :price, :description, :address, :onboard_capacity, :photo, :start_date, :end_date)
   end
 
   # def validate_current_user

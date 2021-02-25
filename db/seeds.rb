@@ -8,6 +8,7 @@ require 'faker'
 #   Character.create(name: 'Luke', movie: movies.first)
 Trailer.destroy_all
 User.destroy_all
+Reservation.destroy_all
 
 user = User.new(
   first_name: Faker::Name.first_name,
@@ -31,15 +32,15 @@ user.save!
   trailer.save!
 
   puts "Trailer do #{user.first_name} foi criado"
-
-  reservation = Reservation.new(
+  date = Date.new(rand(2021..2023), rand(1..12), rand(1..28))
+  reservation = Reservation.create!(
     user_id: user.id,
     trailer_id: trailer.id,
-    start_date: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
-    end_date: "Lorem ipsum dolor sit amet",
-    
+    start_date: date,
+    end_date: date + rand(5..10)
+
     )
 
 
-  
+
 end
