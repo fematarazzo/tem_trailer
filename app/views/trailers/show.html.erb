@@ -10,13 +10,17 @@
         <h4> Description:</h4>
         <h4> <%= @trailer.description %> </h4>
         <hr>
-        <p> Coordinates:</p>
-        <p> <%= @trailer.description %> </p>
-        <p> Onboard Capacity:</p>
-        <p> <%= "#{@trailer.onboard_capacity}" %> </p>
+        <div class="d-flex justify-content-left">
+          <p> Localidade:</p>
+          <p class="ml-2"> <%= @trailer.address %> </p>
+        </div>
+        <div class="d-flex justify-content-left">
+          <p> Onboard Capacity:</p>
+          <p class="ml-2"> <%= "#{@trailer.onboard_capacity}" %> </p>
+        </div>
       </div>
       <div class="card-model p-3 card-border">
-        <h1>Faca sua reserva:</h1>
+        <h1>Faça sua reserva:</h1>
         <%= simple_form_for [ @trailer, @reservation ] do |f| %>
           <%= f.date_field :start_date, min: Date.today, class:"my-5" %>
           <%= f.date_field :end_date, class:"my-5" %>

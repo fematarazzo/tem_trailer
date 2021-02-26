@@ -3,11 +3,12 @@
   <h1>Todas as reservas de <%= @trailer.model %> </h1>
 
   <% @trailer.reservations.each do |reservation| %>
+
     <div class="card d-flex justify-content-between">
-      <div>Cliente: <%= reservation.user.first_name %></div>
-      <div>Início: <%= reservation.start_date.strftime("%Y/%m/%d") %></div>
-      <div>Término: <%= reservation.end_date.strftime("%Y/%m/%d") %></div>
-      <div>Preço: <%= reservation.price %></div>
+      <div><h2>Cliente:<i> <%= reservation.user.first_name %></i></h2></div>
+      <div><h2>Início: <i><%= reservation.start_date.strftime("%Y/%m/%d") %></i></h2></div>
+      <div><h2>Término: <i><%= reservation.end_date.strftime("%Y/%m/%d") %></i></h2></div>
+      <div><h2>Preço: <i><%= reservation.price %></i></h2></div>
     </div>
   <% end %>
 

@@ -20,10 +20,17 @@ class ReservationsController < ApplicationController
     @trailer = Trailer.find(params[:trailer_id])
     @reservation.trailer = @trailer
     @reservation.user = current_user
-    if @reservation.save
+    # valid_reservation = true
+
+    # @trailer.reservations.each do |reservation|
+    #   unless (reservation.start_date < @reservation.end_date || reservation.end_date > @reservation.start_date || @reservation.end_date < @reservation.start_date)
+    #     valid_reservation = false
+    #   end
+    # end
+    if valid_reservation && @reservation.save
       redirect_to reservation_path(@reservation)
     else
-      render "trailers/show"
+      render "trailers/show", notice: "Reserva não concluída. Revise seus dados"
     end
   end
 
