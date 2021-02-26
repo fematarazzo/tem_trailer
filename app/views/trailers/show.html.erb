@@ -3,7 +3,7 @@
   <h1>Detalhes deste trailer</h1>
 
   <div class="card">
-    <%= cl_image_tag @trailer.photo.key, height: 1000, width: 1200, crop: :fill, class:'card-trailer' %>
+    <%= cl_image_tag @trailer.photo.key, crop: :pad %>
     <div class="d-flex justify-content-between p-5">
       <div class="card-model p-3 card-border card-width">
         <h1> <%= @trailer.model %> </h1>
@@ -18,8 +18,8 @@
       <div class="card-model p-3 card-border">
         <h1>Faca sua reserva:</h1>
         <%= simple_form_for [ @trailer, @reservation ] do |f| %>
-          <%= f.date_field :start_date, min: Date.today,class:"my-5" %>
-          <%= f.date_field :end_date, format: "%d/%m/%Y",class:"my-5" %>
+          <%= f.date_field :start_date, min: Date.today, class:"my-5" %>
+          <%= f.date_field :end_date, class:"my-5" %>
           <%= f.button :submit, class:"btn btn-primary" %>
         <% end %>
       </div>
