@@ -11,7 +11,7 @@ class TrailersController < ApplicationController
       @trailers = Trailer.where("address ILIKE ?", "%#{params[:search][:query]}%")
                          .where(onboard_capacity: params[:search][:capacity])
       @trailers.select do |trailer|
-        Reservation.where(trailer: trailer).where("start_date > ? OR end_date <  ?", end_date, start_date).empty?
+        Reservation.where(trailer: trailer).where("start_date > ? OR end_date <  ?", params[:search][:end_date], params[:search][:start_date]).empty?
       end
       @markers = @trailers.geocoded.map do |flat|
         {
