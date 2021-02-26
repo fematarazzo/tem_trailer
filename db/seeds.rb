@@ -32,12 +32,12 @@ user.save!
   trailer.save!
 
   puts "Trailer do #{user.first_name} foi criado"
-  date = Date.new(rand(2021..2023), rand(1..12), rand(1..28))
+  datetime = Date.new(rand(2021..2023), rand(1..12), rand(1..28))
   reservation = Reservation.create!(
     user_id: user.id,
     trailer_id: trailer.id,
-    start_date: date,
-    end_date: date + rand(5..10)
+    start_date: datetime,
+    end_date: datetime + rand(5..10)
 
     )
 
