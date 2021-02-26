@@ -18,8 +18,8 @@
       <div class="card-model p-3 card-border">
         <h1>Faca sua reserva:</h1>
         <%= simple_form_for [ @trailer, @reservation ] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
+          <%= f.date_field :start_date, min: Date.today,class:"my-5" %>
+          <%= f.date_field :end_date, format: "%d/%m/%Y",class:"my-5" %>
           <%= f.button :submit, class:"btn btn-primary" %>
         <% end %>
       </div>
