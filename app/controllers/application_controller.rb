@@ -21,5 +21,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:phone_number])
 
     devise_parameter_sanitizer.permit(:sign_up, keys: [:photo])
+
+    devise_parameter_sanitizer.permit(:account_update, keys: [:photo])
   end
 end
