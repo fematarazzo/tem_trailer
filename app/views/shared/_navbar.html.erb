@@ -1,3 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between d-flex fixed-top">
+  <%= link_to "TemTrailer", root_path, class: "navbar-brand col-6" %>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse col-6 " id="navbarNavDropdown">
+    <ul class="navbar-nav" style="margin-right:auto !important">
+     
+      <li class="nav-item dropdown mr-auto">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu
+          </a>
+       
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <% if  !current_user %>
+          <%= link_to "Log In", new_user_session_path, class: "dropdown-item" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "dropdown-item" %>
+      <% else %>
+          <%= link_to "Profile", profiles_path, class: "dropdown-item" %>
+          <%= link_to "Insert your Trailer", new_trailer_path, class: "dropdown-item" %>
+          <%= link_to "Manage my Trailers", user_trailers_path, class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<%
+=begin %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <% #image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
@@ -7,7 +41,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
+  
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if  !current_user %>
@@ -18,6 +52,9 @@
           <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
         </li>
       <% else %>
+        <li class="nav-item">
+          <%= link_to "Profile", profiles_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to "Insert your Trailer", new_trailer_path, class: "nav-link" %>
         </li>
@@ -42,4 +79,6 @@
     </ul>
   </div>
 </div>
+<%
+=end%>
 
