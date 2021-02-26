@@ -28,7 +28,7 @@ user.save!
     user_id: user.id,
     model: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.model}",
     description: "Lorem ipsum dolor sit amet",
-    price: rand(50000..400000),
+    price: rand(1000..5000),
     onboard_capacity: rand(1..8),
     address: Faker::Address.state
     )

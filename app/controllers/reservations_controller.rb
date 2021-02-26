@@ -27,7 +27,7 @@ class ReservationsController < ApplicationController
     #     valid_reservation = false
     #   end
     # end
-    if valid_reservation && @reservation.save
+    if @reservation.save
       redirect_to reservation_path(@reservation)
     else
       render "trailers/show", notice: "Reserva não concluída. Revise seus dados"

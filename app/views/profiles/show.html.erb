@@ -1,2 +1,43 @@
-<h1>My profile</h1>
-<h2> <%=  current_user.first_name %> </h2>
+<div class="container mt-4">
+  <% if current_user.photo.attached?  %>
+    <%= cl_image_tag current_user.photo.key, class: " avatar-profile mb-3" %>
+    <% else %>
+  <% end %>
+  <h2>Olá, <%= current_user.first_name.capitalize %> </h2>
+  <p>Aqui estão as informações do seu perfil, <%= link_to "clique aqui", edit_user_registration_path %> se quiser alterá-las</p>
+  <div>
+    <div style="display:inline-block mt-4">
+      <h4 class="mt-4">Nome:</h4>
+      <%= current_user.first_name.capitalize %> <%=  current_user.last_name.capitalize %>
+      <h4 class="mt-4">E-mail:</h4>
+      <%=  current_user.email %>
+      <h4 class="mt-4">Telefone:</h4>
+      <%=  current_user.phone_number %>
+      <h4 class="mt-4">Informações adicionais:</h4>
+      <%=  current_user.description %>
+    </div>
+  </div>
+<div class="container mt-4">
+  <h2>Reservas dos seus trailers</h2>
+  <% if @reservations_owner.any? %>
+    <% @reservations_owner.each do |reservation| %>
+    <div class="card p-3">
+      <p><%= simple_format reservation.info %></p>
+    </div>
+    <% end %>
+  <% else %>
+    <p>Não há reservas</p>
+  <% end %>
+  <h2>Reservas para suas viagens programadas</h2>
+  <% if @reservations_client.any? %>
+    <% @reservations_client.each do |reservation| %>
+    <div class="card p-3">
+      <p><%= simple_format reservation.info %></p>
+    </div>
+    <% end %>
+  <% else %>
+    <p>Não há reservas</p>
+  <% end %>
+</div>
+  <%= link_to "Voltar para home", root_path, class:"btn btn-success mt-4" %>
+</div>
