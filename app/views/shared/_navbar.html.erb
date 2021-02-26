@@ -19,6 +19,9 @@
         </li>
       <% else %>
         <li class="nav-item">
+          <%= link_to "Profile", profiles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
           <%= link_to "Insert your Trailer", new_trailer_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
