@@ -7,7 +7,7 @@
       <%= link_to "View all Trailers", trailers_path, class:"btn btn-flat"%>
     </div>
     <div class="card-form p-4 card-border">
-      <h1 class="mb-3">Search - será aqui</h1>
+      <h1 class="mb-3">Encontre seu trailer:</h1>
 
       <%= simple_form_for :search, url: trailers_path, method: :get do |f| %>
         <%= f.input :query, label: false, input_html: { placeholder: "Find your trailer", value: nil }%>

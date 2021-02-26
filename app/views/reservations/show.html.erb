@@ -2,22 +2,9 @@
   <h1>Sua reserva foi confirmada!</h1>
   <p>Aqui estão os detalhes da reserva:</p>
   <div>
-    <div style="display:inline-block;">
-      <h2 class="mt-4">Data de inicio:</h2>
-      <!-- <h2 class="mt-2"> <%= @reservation.start_date %>  </h2> -->
-      <h2 class="mt-4">Data de devolucao:</h2>
-      <!-- <h2 class="mt-2"> <%= @reservation.end_date %>  </h2> -->
-      <h2 class="mt-4">Trailer reservado:</h2>
-      <!-- <h2 class="mt-2"><%= @reservation.trailer.model %> </h2> -->
-    </div>
-    <div style="display:inline-block;">
-      <!-- <h2 class="mt-4">Data de inicio:</h2> -->
-      <h2 class="mt-4"><i> <%= l(@reservation.start_date, format:'%A, %d %b %Y') %> </i> </h2>
-      <!-- <h2 class="mt-4">Data de devolucao:</h2> -->
-      <h2 class="mt-4"><i> <%= l(@reservation.end_date, format:'%A, %d %b %Y') %>  </i> </h2>
-      <!-- <h2 class="mt-4">Trailer reservado:</h2> -->
-      <h2 class="mt-4"><i> <%= @reservation.trailer.model %></i> </h2>
-    </div>
+      <h2 class="mt-4"><strong>Data de início: </strong><i> <%= l(@reservation.start_date, format:'%A, %d %b %Y') %> </i> </h2>
+      <h2 class="mt-4"><strong>Data de devolução: </strong><i> <%= l(@reservation.end_date, format:'%A, %d %b %Y') %>  </i></h2>
+      <h2 class="mt-4"><strong>Trailer reservado:</strong><i> <%= @reservation.trailer.model %></i></h2>
   </div>
 
   <%= link_to "Voltar para home", root_path, class:"btn btn-success mt-4" %>
