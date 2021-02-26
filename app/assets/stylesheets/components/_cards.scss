@@ -1,6 +1,5 @@
 .card-trailer {
   height: 300px;
-  object-fit: cover;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -23,5 +22,9 @@
 
 .card-width {
   width: 600px;
+}
+
+#date {
+  color: $black;
 }
 

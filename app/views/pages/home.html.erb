@@ -9,19 +9,38 @@
     <div class="card-form p-4 card-border">
       <h1>Search - será aqui</h1>
 
+      <%= simple_form_for :search, url: trailers_path, method: :get do |f| %>
+        <%= f.input :query, label: false, input_html: { placeholder: "Find your trailer", value: nil }%>
+        <%= f.input :capacity, as: :select, collection: 1..8, default: 1 %>
+        <%= f.date_field :start_date, min: Date.today, class:"my-5" %>
+        <%= f.date_field :end_date, class:"my-5" %>
+        <%= f.button :submit, class:"btn btn-primary" %>
+      <% end %>
+<%
+=begin%>
       <%= form_tag trailers_path, method: :get do %>
         <%= text_field_tag :query,
           params[:query],
-          class: "form-control",
+          class: "form-control my-2",
           placeholder: "Find your trailer"
         %>
         <%= select_tag :capacity, options_for_select((1..8)),
-          class: "form-control",
+          class: "form-control my-2",
           placeholder: "Numero de pessoas"
         %>
+        <div class="d-flex flex-column my-2">
+          <div>
+            select_date(date = Date.current, options = {}, html_options = {})
+            <p id="date">Start Date</p> <%= date_select("reservation", "start_date") %>
+          </div>
+          <div>
+           <p id="date" class="mt-1">End Date</p> <%= date_select("reservation", "end_date")%>
+          </div>
+        </div>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
-
+<%
+=end%>
     </div>
   </div>
 
