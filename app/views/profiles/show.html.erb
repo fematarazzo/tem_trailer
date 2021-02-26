@@ -22,6 +22,30 @@
     </div>
   </div>
 
-  <%= link_to "Voltar para home", root_path, class:"btn btn-success mt-4" %>
+<div class="container mt-4">
+  <h2>Reservas dos seus trailers</h2>
+  <% if @reservations_owner.any? %>
+    
+    <% @reservations_owner.each do |reservation| %>
+      <p><%= simple_format reservation.info %></p>
+    <% end %>
+  
+  <% else %>
+    <p>Não há reservas</p>
+  <% end %>
+
+  <h2>Reservas para suas viagens programadas</h2>
+  <% if @reservations_client.any? %>
+    
+    <% @reservations_client.each do |reservation| %>
+      <p><%= simple_format reservation.info %></p>
+    <% end %>
+    
+  <% else %>
+    <p>Não há reservas</p>
+  <% end %>
+
 </div>
 
+  <%= link_to "Voltar para home", root_path, class:"btn btn-success mt-4" %>
+</div>
