@@ -7,14 +7,14 @@
       <%= link_to "View all Trailers", trailers_path, class:"btn btn-flat"%>
     </div>
     <div class="card-form p-4 card-border">
-      <h1>Search - será aqui</h1>
+      <h1 class="mb-3">Search - será aqui</h1>
 
       <%= simple_form_for :search, url: trailers_path, method: :get do |f| %>
         <%= f.input :query, label: false, input_html: { placeholder: "Find your trailer", value: nil }%>
-        <%= f.input :capacity, as: :select, collection: 1..8, default: 1 %>
-        <%= f.date_field :start_date, min: Date.today, class:"my-5" %>
-        <%= f.date_field :end_date, class:"my-5" %>
-        <%= f.button :submit, class:"btn btn-primary" %>
+        <%= f.input :capacity, as: :select, collection: 1..8 %>
+        <%= f.date_field :start_date, min: Date.today, class:"my-3" %>
+        <%= f.date_field :end_date, class:"my-3" %>
+        <%= f.submit "Search", class:"btn btn-primary" %>
       <% end %>
 <%
 =begin%>
