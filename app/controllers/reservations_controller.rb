@@ -16,7 +16,6 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    raise
     @reservation = Reservation.new(reservation_params)
     @trailer = Trailer.find(params[:trailer_id])
     @reservation.trailer = @trailer
