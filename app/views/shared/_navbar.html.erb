@@ -33,7 +33,7 @@
       <% end %>
       <li class="nav-item dropdown">
         <% if user_signed_in? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= image_tag url('https://mgoblog.com/sites/mgoblog.com/files/Dwight-dwight-schrute-16214468-595-324_thumb.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
           <% end %>
 

@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@trailer.model} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @trailer.description %>
+<% content_for :meta_image, cl_image_path(@trailer.photo.key) %>
+
 <div class="container mt-4">
 
   <h1>Detalhes deste trailer</h1>
@@ -30,4 +34,3 @@
     </div>
   </div>
 </div>
-
