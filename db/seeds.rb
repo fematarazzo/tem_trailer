@@ -19,7 +19,7 @@ user = User.new(
   email: "teste@teste.com",
   password: "teste123",
   phone_number: "1234567",
-  )
+)
 user.save!
 
 10.times do
@@ -31,11 +31,9 @@ user.save!
     price: rand(1000..5000),
     onboard_capacity: rand(1..8),
     address: Faker::Address.state
-    )
+  )
 
   trailer.save!
-
-
 
   5.times do
     reservation = Reservation.create(
@@ -43,10 +41,9 @@ user.save!
       trailer_id: trailer.id,
       start_date: date,
       end_date: date + 10
-      )
+    )
     date = date + 30
   end
-
 end
 
 
