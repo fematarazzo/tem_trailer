@@ -33,16 +33,9 @@
       <% end %>
       <li class="nav-item dropdown">
         <% if user_signed_in? %>
-        <%= image_tag url('https://mgoblog.com/sites/mgoblog.com/files/Dwight-dwight-schrute-16214468-595-324_thumb.jpg'), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% else %>
-          <% end %>
-
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <%= link_to "Action", "#", class: "dropdown-item" %>
-          <%= link_to "Another action", "#", class: "dropdown-item" %>
-        </div>
+          <%= image_tag 'https://mgoblog.com/sites/mgoblog.com/files/Dwight-dwight-schrute-16214468-595-324_thumb.jpg', class: "avatar" %>
+        <% end %>
       </li>
     </ul>
   </div>
 </div>
-
