@@ -7,3 +7,9 @@
 Como locador pode-se cadastrar novos trailers, acompanhar os trailers alugados e gerenciá-los.
 
 Como cliente pode-se buscar por estado, selecionar o trailer de interesse e alugá-lo.
+
+
+## Contribuidores
+
+![GitHub Contributors Image](https://contrib.rocks/image?repo=fematarazzo/tem_trailer)
+
