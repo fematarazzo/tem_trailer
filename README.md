@@ -8,9 +8,11 @@
 
 Como locador pode-se cadastrar novos trailers, acompanhar os trailers alugados e gerenciá-los.
 
-As a renter, you can register new trailers, track rented trailers and manage them.
+Como cliente pode-se buscar por estado, selecionar o trailer de interesse e alugá-lo.
 
-As a customer you can search by state, select the trailer of interest and rent it. 
+<i>As a renter, you can register new trailers, track rented trailers and manage them.</i>
+
+<i>As a customer you can search by state, select the trailer of interest and rent it.</i>
 
 
 ## Contribuidores/Contributors
