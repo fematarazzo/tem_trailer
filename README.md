@@ -2,7 +2,7 @@
 
 [Tem Trailer](https://temtrailer.herokuapp.com) é uma plataforma marketplace para trailers e motorhomes, onde o cliente pode alugar ou disponibilizar o próprio trailer.
 
-<i>[Tem Trailer] (https://temtrailer.herokuapp.com) is a marketplace platform for trailers and motorhomes, where the customer can rent or make it available.</i>
+[Tem Trailer](https://temtrailer.herokuapp.com) is a marketplace platform for trailers and motorhomes, where the customer can rent or make it available.
 
 ## Uso
 
